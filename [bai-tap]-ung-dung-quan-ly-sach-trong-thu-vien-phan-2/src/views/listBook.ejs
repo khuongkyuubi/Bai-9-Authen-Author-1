@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Books</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        const update = (id) => {
+            window.open('http://localhost:3000/book/update/' + id);
+        };
+        const deleteBook = async (id) => {
+            await $.ajax({
+                url: `http://localhost:3000/book/delete/${id}`,
+                type: "DELETE",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                }
+            });
+            location.reload();
+        };
+
+        async function changeCategory(value) {
+            // await $.get("", {category: value});
+            // location.reload();
+
+            await $.ajax({
+                url: ``,
+                type: "GET",
+                data: `category=${value}`,
+                success: function (result) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                }
+            });
+            // location.reload();
+        }
+
+    </script>
+</head>
+
+<body>
+<form action="" method="GET">
+    <label>Keyword:</label>
+    <input type="text" id="keyword" name="keyword" value="<%= keywordFind %>">
+    <p>Or</p>
+    <label>Publisher:</label>
+    <input type="text" id="publisher" name="publisher" value="<%= publisherFind %>">
+    </br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<label for="category">Choose a category:</label>
+<form>
+
+    <select name="category" id="category" <!--onchange="changeCategory(this.value)"-->>
+        <option value="all">All</option>
+        <% categories.forEach(category => { %>
+            <option value="<%= category._id %>"><%= category.type %></option>
+        <% }) %>
+    </select>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Sort</button>
+    </div>
+</form>
+
+<h2>List Books</h2>
+<% for(const book of books) { %>
+    <h3>
+        Category: <%= book.category.type %>
+    </h3>
+    <h3>
+        Title: <%= book.title %>
+    </h3>
+    <p>
+        Author: <%= book.author %>
+    </p>
+    <p>
+        Publisher: <%= book.publisher.name %>
+    </p>
+    <p>
+        Keyword: <%= book.keywords[0].keyword %>
+    </p>
+    <button onclick="update('<%= book.id %>')">Update</button>
+    <button onclick="deleteBook('<%= book.id %>')">Delete</button>
+    </br>
+<% } %>
+</body>
+
+</html>

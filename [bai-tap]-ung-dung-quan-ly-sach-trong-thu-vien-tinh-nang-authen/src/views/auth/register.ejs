@@ -1,0 +1,12 @@
+<h2>Register new account</h2>
+<form action="/auth/register" method="POST">
+    User Name: <input type="text" name="username" placeholder="username" required autocomplete="on"><br>
+    Password: <input type="password" name="password" placeholder="password" required autocomplete="on"><br>
+    Role: <select name="role" id="role">
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+    </select><br>
+    <button type="submit"> Register</button>
+    <br>
+    <a href="/auth/login">Login if you had account!</a>
+</form>

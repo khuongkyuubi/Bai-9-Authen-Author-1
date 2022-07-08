@@ -1,0 +1,32 @@
+<div class="page-heading">
+  <h1>Update book</h1>
+</div>
+<form action="/book/post/update" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="access_token" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYzdlODk5NDg3YmM4OTcyNTdhOGMwYyIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTcyOTUxNzEsImV4cCI6MTY1NzMwMjM3MX0.zc9MYgbtQ8vOnqCGMekTC_RDArio365SlDlVmZMH5iM">
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <label>Id</label>
+      <input type="hidden" class="form-control" id="id" name="id" value="<%=book.id%>">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <label>title</label>
+      <input type="text" class="form-control" id="title" name="title" value="<%=book.title%>" >
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <label>Description</label>
+      <input type="text" class="form-control" id="description" name="description" value="<%=book.description%>">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <label>Author</label>
+      <input type="text" class="form-control" id="author" name="author" value="<%=book.author.name%>">
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" >Update</button></div>
+</form>
